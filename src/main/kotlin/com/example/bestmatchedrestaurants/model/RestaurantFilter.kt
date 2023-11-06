@@ -5,5 +5,5 @@ data class RestaurantFilter(
     var customer_rating: Int?,
     var distance: Int?,
     var price: Int?,
-    var cuisine_id: Int?
+    var cuisine: String?
 )

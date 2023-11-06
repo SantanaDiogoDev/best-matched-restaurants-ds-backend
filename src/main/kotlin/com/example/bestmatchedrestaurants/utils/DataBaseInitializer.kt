@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 class DataBaseInitializer(private val cuisineRepository: ICuisineRepository, private val restaurantRepository: IRestaurantRepository) : CommandLineRunner{
 
     override fun run(vararg args: String?){
-        val csvReader = CsvReader();
+        val csvReader = CsvReader(cuisineRepository);
         val cuisines = csvReader.readCuisiceCsv();
         cuisineRepository.saveAll(cuisines);
 

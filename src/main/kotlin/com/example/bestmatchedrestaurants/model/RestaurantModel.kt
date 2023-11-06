@@ -2,13 +2,16 @@ package com.example.bestmatchedrestaurants.model
 
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
+import jakarta.persistence.ManyToOne
+import java.util.*
 
 @Entity
-data class RestaurantModel (
+data class RestaurantModel(
     @Id
     var name: String,
     var customer_rating: Int,
     var distance: Int,
     var price: Int,
-    var cuisine_id: Int
+    @ManyToOne
+    var cuisine: CuisineModel
 )

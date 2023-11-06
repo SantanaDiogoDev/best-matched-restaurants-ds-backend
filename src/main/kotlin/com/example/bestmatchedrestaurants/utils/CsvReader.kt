@@ -2,8 +2,9 @@ package com.example.bestmatchedrestaurants.utils
 
 import com.example.bestmatchedrestaurants.model.CuisineModel
 import com.example.bestmatchedrestaurants.model.RestaurantModel
+import com.example.bestmatchedrestaurants.repository.ICuisineRepository
 
-class CsvReader {
+class CsvReader (private val cuisineRepository: ICuisineRepository) {
     fun readCuisiceCsv() : List<CuisineModel>{
         val cuisineList = mutableListOf<CuisineModel>();
         val cuisineFile = this::class.java.getResource("/static/cuisines.csv").readText();
@@ -27,8 +28,8 @@ class CsvReader {
             val customer_rating = values[1].toInt();
             val distance = values[2].toInt();
             val price = values[3].toInt();
-            val cuisine_id = values[4].toInt();
-            restaurantList.add(RestaurantModel(name, customer_rating, distance, price, cuisine_id));
+            val cuisine = cuisineRepository.findById(values[4].toInt()).get();
+            restaurantList.add(RestaurantModel(name, customer_rating, distance, price, cuisine));
         }
         return restaurantList;
     }
