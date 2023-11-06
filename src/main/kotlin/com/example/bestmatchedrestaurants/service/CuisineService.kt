@@ -6,5 +6,5 @@ import org.springframework.stereotype.Service
 
 @Service
 class CuisineService(val repository: ICuisineRepository) {
-    fun findAll(): Iterable<CuisineModel> = repository.findAll();
+    fun findAll() = repository.findAll();
 }

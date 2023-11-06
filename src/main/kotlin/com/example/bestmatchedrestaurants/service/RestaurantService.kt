@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service
 
 @Service
 class RestaurantService(val repository: IRestaurantRepository) {
-    fun findAll(): Iterable<RestaurantModel> = repository.findAll();
-    fun findByFilter(restaurant: RestaurantFilter): Iterable<RestaurantModel> = repository.findAll();
+    fun findAll() = repository.findAll();
+    fun findByFilter(restaurant: RestaurantFilter) = repository.findAll();
 }
