@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("cuisines/")
+@RequestMapping("/cuisines/")
 class CuisineController(val service: CuisineService){
     @GetMapping
     fun findAll(): Iterable<CuisineModel> {

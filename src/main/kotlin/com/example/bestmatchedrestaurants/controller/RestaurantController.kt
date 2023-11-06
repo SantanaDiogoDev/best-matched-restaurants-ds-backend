@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 class RestaurantController (val service: RestaurantService){
     @GetMapping("/")
     fun findAll() {
-        service.readRestaurantCsv();
         service.findAll();
     }
 
