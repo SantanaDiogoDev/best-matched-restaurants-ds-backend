@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/restaurants/")
-abstract class RestaurantController (val service: RestaurantService) : List<RestaurantModel>{
-    @GetMapping
-    fun findAll() = service.findAll();
+class RestaurantController (val service: RestaurantService){
+    @GetMapping("/")
+    fun findAll() {
+        service.readRestaurantCsv();
+        service.findAll();
+    }
 
-    @GetMapping("filter")
-    fun findFiltered(@RequestBody restaurant: RestaurantFilter) = service.findByFilter(restaurant)
+    @GetMapping("/filter")
+    fun findFiltered(@RequestBody restaurant: RestaurantFilter) {
+        service.findByFilter(restaurant);
+    }
 
 }
