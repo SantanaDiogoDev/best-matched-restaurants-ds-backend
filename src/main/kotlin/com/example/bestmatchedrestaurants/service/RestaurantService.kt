@@ -30,8 +30,12 @@ class RestaurantService(val repository: IRestaurantRepository, @PersistenceConte
     fun createPredicates(queryBuilder: CriteriaBuilder, entity: Root<RestaurantModel>, restaurant: RestaurantFilter): MutableList<Predicate> {
         val predicates = mutableListOf<Predicate>();
 
-        restaurant.name?.let {
+        restaurant.name ?. let {
             predicates.add(queryBuilder.like(queryBuilder.lower(entity.get<String>("name")), "%$it%"));
+        }
+
+        restaurant.customerRating ?. let {
+            predicates.add(queryBuilder.greaterThanOrEqualTo(entity.get<Int>("customerRating"), it.toInt()));
         }
 
         return predicates;

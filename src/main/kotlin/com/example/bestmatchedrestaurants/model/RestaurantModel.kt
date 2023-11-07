@@ -9,7 +9,7 @@ import java.util.*
 data class RestaurantModel(
     @Id
     var name: String,
-    var customer_rating: Int,
+    var customerRating: Int,
     var distance: Int,
     var price: Int,
     @ManyToOne
