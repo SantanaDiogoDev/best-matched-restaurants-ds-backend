@@ -22,7 +22,7 @@ class RestaurantController (val service: RestaurantService){
         @RequestBody restaurant: RestaurantFilter?
     ): ResponseEntity<List<RestaurantModel>> {
         val filter = RestaurantFilter(name, customerRating, distance, price, cuisine);
-
+        println("Acessou");
         return ResponseEntity.ok(service.findByFilter(restaurant ?: filter));
     }
 
