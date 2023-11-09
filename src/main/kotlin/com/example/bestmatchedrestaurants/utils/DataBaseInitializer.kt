@@ -6,14 +6,17 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.stereotype.Component
 
 @Component
-class DataBaseInitializer(private val cuisineRepository: ICuisineRepository, private val restaurantRepository: IRestaurantRepository) : CommandLineRunner{
+class DataBaseInitializer(private val ICuisineRepository: ICuisineRepository, private val restaurantRepository: IRestaurantRepository) : CommandLineRunner{
 
     override fun run(vararg args: String?){
-        val csvReader = CsvReader(cuisineRepository);
-        val cuisines = csvReader.readCuisiceCsv();
-        cuisineRepository.saveAll(cuisines);
+        val cuisinePath = "/static/cuisines.csv";
+        val restaurantPath = "/static/restaurants.csv";
 
-        val restaurants = csvReader.readRestaurantCsv();
+        val csvReader = CsvReader(ICuisineRepository);
+        val cuisines = csvReader.readCuisiceCsv(cuisinePath);
+        ICuisineRepository.saveAll(cuisines);
+
+        val restaurants = csvReader.readRestaurantCsv(restaurantPath);
         restaurantRepository.saveAll(restaurants);
     }
 

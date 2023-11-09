@@ -13,7 +13,7 @@ class RestaurantController (val service: RestaurantService){
     fun findAll() = service.findAll();
 
     @GetMapping("/filter")
-    fun findFiltered(
+    fun findByFilter(
         @RequestParam name: String?,
         @RequestParam customerRating: Int?,
         @RequestParam distance: Int?,

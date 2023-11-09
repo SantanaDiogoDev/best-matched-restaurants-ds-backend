@@ -21,7 +21,6 @@ class RestaurantService(val repository: IRestaurantRepository, @PersistenceConte
         val builder: CriteriaBuilder = entityManager.criteriaBuilder;
         val criteriaQuery: CriteriaQuery<RestaurantModel> = builder.createQuery(RestaurantModel::class.java);
         val entity: Root<RestaurantModel> = criteriaQuery.from(RestaurantModel::class.java);
-
         var predicates: MutableList<Predicate> = createPredicates(builder, entity, restaurant);
 
         criteriaQuery.where(*predicates.toTypedArray());
@@ -36,23 +35,23 @@ class RestaurantService(val repository: IRestaurantRepository, @PersistenceConte
         val predicates = mutableListOf<Predicate>();
 
         restaurant.name ?. let {
-            predicates.add(queryBuilder.like(queryBuilder.lower(entity.get<String>("name")), "%${it.lowercase()}%"));
+            predicates.add(queryBuilder.like(queryBuilder.lower(entity.get("name")), "%${it.lowercase()}%"));
         }
 
         restaurant.customerRating ?. let {
-            predicates.add(queryBuilder.greaterThanOrEqualTo(entity.get<Int>("customerRating"), it.toInt()));
+            predicates.add(queryBuilder.greaterThanOrEqualTo(entity.get("customerRating"), it));
         }
 
         restaurant.distance ?. let {
-            predicates.add(queryBuilder.lessThanOrEqualTo(entity.get<Int>("distance"), it.toInt()));
+            predicates.add(queryBuilder.lessThanOrEqualTo(entity.get("distance"), it));
         }
 
         restaurant.price ?. let {
-            predicates.add(queryBuilder.lessThanOrEqualTo(entity.get<Int>("price"), it.toInt()));
+            predicates.add(queryBuilder.lessThanOrEqualTo(entity.get("price"), it));
         }
 
         restaurant.cuisine ?. let {
-            predicates.add(queryBuilder.like(queryBuilder.lower(entity.get<CuisineModel>("cuisine").get<String>("name")), "%${it.lowercase()}%"))
+            predicates.add(queryBuilder.like(queryBuilder.lower(entity.get<CuisineModel>("cuisine").get("name")), "%${it.lowercase()}%"))
         }
 
         return predicates;
