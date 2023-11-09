@@ -28,11 +28,11 @@ Three endpoint are provided in the ```http://localhost:8080```:
 
 ## Build
 
-```mvn clean install```
+```mvn clean install -DskipTests```
 
 ## Running
 
-```java -jar .\target\best-matched-restaurants-ds-3.1.5.jar```
+```java -jar target/best-matched-restaurants-ds-3.1.5.jar```
 
 ## Testing
 
