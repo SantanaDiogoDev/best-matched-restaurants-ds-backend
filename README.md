@@ -37,3 +37,5 @@ Three endpoint are provided in the ```http://localhost:8080```:
 ## Testing
 
 ```mvn test```
+
+(Application must be running)
